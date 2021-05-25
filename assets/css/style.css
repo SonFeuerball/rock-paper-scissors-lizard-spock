@@ -381,6 +381,7 @@ aside #options #showRules {
 
 aside #options #muteSound {
   font-size: 2em;
+  min-width: 30%;
 }
 
 aside #flowSection {
