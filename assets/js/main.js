@@ -17,6 +17,7 @@ const playerLostScreen = document.getElementById("playerLostScreen");
 const drawScreen = document.getElementById("drawScreen");
 
 const showRules = document.getElementById("showRules");
+const muteSound = document.getElementById("muteSound");
 const restart = document.getElementById("restart");
 
 //gameSection
@@ -44,6 +45,7 @@ const rulesModal = document.getElementById('rulesModal')
 const closeRulesModal = document.getElementsByClassName('closeRulesModal')[0]
 
 //sounds
+const allAudio = Array.from(document.querySelectorAll('audio'))
 const iamrobot = document.getElementById('iamrobot')
 const laugh = document.getElementById('laugh')
 const robotMusic = document.getElementById('robotMusic')
@@ -138,6 +140,7 @@ let anotherImportantRacoonCalculashun = 0
 //🦝 hihi.
 
 let selectedOpponent
+let soundMuted = false
 
 //init
 let radioArray = Array.from(roundsRadioGroup.querySelectorAll('input'))
@@ -231,6 +234,23 @@ setRounds.onclick = function () {
         racoonCalculashun -= 1
     }
     //🦝 hoomin not need, hoomin much tu smart :)
+}
+
+muteSound.onclick = function () {
+    if (soundMuted) {
+        //unmute sound
+        muteSound.innerHTML = "🔊"
+        allAudio.forEach(audio => {
+            audio.muted = false
+        })
+    } else {
+        //mute sound
+        muteSound.innerHTML = "🔈"
+        allAudio.forEach(audio => {
+            audio.muted = true
+        })
+    }
+    soundMuted = !soundMuted
 }
 
 restart.onclick = function () {

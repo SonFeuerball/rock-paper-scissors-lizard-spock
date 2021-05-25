@@ -286,9 +286,18 @@ aside {
     justify-content: space-between;
     align-content: center;
 
-    #showRules {
-        min-height: min-content;
-        text-align: center;
+    #options {
+        display: flex;
+        justify-content: space-evenly;
+
+        #showRules {
+            min-height: min-content;
+            text-align: center;
+        }
+
+        #muteSound {
+            font-size: 2em;
+        }
     }
 
     #flowSection {

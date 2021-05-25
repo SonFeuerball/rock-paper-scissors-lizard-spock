@@ -363,11 +363,24 @@ aside {
       align-content: center;
 }
 
-aside #showRules {
+aside #options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+aside #options #showRules {
   min-height: -webkit-min-content;
   min-height: -moz-min-content;
   min-height: min-content;
   text-align: center;
+}
+
+aside #options #muteSound {
+  font-size: 2em;
 }
 
 aside #flowSection {
