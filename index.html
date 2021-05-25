@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="shortcut icon" href="assets/img/favicon.PNG">
+
+    <title>R-P-S-L-S</title>
+</head>
+
+<body>
+
+    <main>
+        <section id="roundSelectorSection">
+            <div id="titleWords">
+                <div id="rockTitle" class="spinny">Rock</div>
+                <div id="rockTitle" class="bouncy">Paper</div>
+                <div id="rockTitle" class="shifty">Scissors</div>
+                <div id="rockTitle" class="shaky">Lizard</div>
+                <div id="rockTitle" class="rotaty">Spock</div>
+            </div>
+            <h1>Select rounds:</h1>
+            <div id="roundsRadioGroup">
+                <input type="radio" id="rounds5" name="rounds" value="5">
+                <label for="rounds5">5</label>
+
+                <input type="radio" id="rounds10" name="rounds" value="10" checked>
+                <label for="rounds10">10</label>
+
+                <input type="radio" id="rounds15" name="rounds" value="15">
+                <label for="rounds15">15</label>
+
+                <input type="radio" id="rounds20" name="rounds" value="20">
+                <label for="rounds20">20</label>
+            </div>
+
+            <h1>Select opponent:</h1>
+            <div id="opponentRadioGroup">
+                <input type="radio" id="robot" name="opponent" value="0" checked>
+                <label for="robot" class="drawHands">🤖</label>
+
+                <input type="radio" id="racoon" name="opponent" value="1">
+                <label for="racoon" class="drawHead">🦝</label>
+            </div>
+
+            <button id="setRounds">start game</button>
+        </section>
+
+        <section id="gameSection">
+            <article id="roundCounter">
+                <div>
+                    <span id="currentRound"></span>
+                    <span> / </span>
+                    <span id="maxRounds"></span>
+                </div>
+                <div>
+                    <span>PlayerScore:</span>
+                    <span id="playerScore">0</span>
+                    <span>CompScore:</span>
+                    <span id="compScore">0</span>
+                </div>
+            </article>
+            <article id="compMove">
+                <div id="tauntField">loading</div>
+                <span id="opponentFace">🤖</span><span id="compHand">?</span>
+            </article>
+            <article id="gameComment">
+                Select your move:
+            </article>
+            <article id="playerMove">
+                <button id="playerRock" onclick="playerMove(0)">
+                    ✊
+                </button>
+                <button id="playerPaper" onclick="playerMove(1)">
+                    🤚
+                </button>
+                <button id="playerScissors" onclick="playerMove(2)">
+                    ✌️
+                </button>
+                <button id="playerLizard" onclick="playerMove(3)">
+                    🤏
+                </button>
+                <button id="playerSpock" onclick="playerMove(4)">
+                    🖖
+                </button>
+            </article>
+        </section>
+
+        <section id="playerWonScreen">
+            <h1>
+                You Win!
+            </h1>
+            <article>
+                <div id="leftHand" class="winHands">
+                    ✊
+                </div>
+                <div id="head" class="winHead">
+                    😄
+                </div>
+                <div id="rightHand" class="winHands">
+                    ✊
+                </div>
+            </article>
+        </section>
+
+        <section id="playerLostScreen">
+            <h1>
+                You Lose!
+            </h1>
+            <article>
+                <div id="leftHand" class="leftLoseHand">
+                    👊
+                </div>
+                <div id="head" class="loseHead">
+                    🤬
+                </div>
+                <div id="rightHand" class="rightLoseHand">
+                    👊
+                </div>
+            </article>
+            <article id="racoonWins">
+                <div>
+                    🦝<span> so cloze!</span><br>
+                    <span id="reeson">no reeson for loOky in jabasciptzfile!!!11!!1</span>
+                </div>
+            </article>
+        </section>
+
+        <section id="drawScreen">
+            <h1>
+                Draw!
+            </h1>
+            <article>
+                <div id="leftHand" class="drawHands">
+                    ✋
+                </div>
+                <div id="head" class="drawHead">
+                    😐
+                </div>
+                <div id="rightHand" class="drawHands">
+                    🤙
+                </div>
+            </article>
+        </section>
+    </main>
+    <hr>
+    <aside>
+        <button id="showRules">show rules</button>
+        <section id="flowSection">
+            <!-- content is added while playing -->
+        </section>
+        <button id="restart">restart</button>
+    </aside>
+
+    <div id="rulesModal" class="modal">
+        <div class="modalContent">
+            <span class="closeRulesModal">&times;</span>
+            <p>It's very simple.</p>
+            <p>✌️ cuts 🤚</p>
+            <p>🤚 covers ✊</p>
+            <p>✊ crushes 🤏</p>
+            <p>🤏 poisons 🖖</p>
+            <p>🖖 smashes ✌️</p>
+            <p>✌️ decapitates 🤏</p>
+            <p>🤏 eats 🤚</p>
+            <p>🤚 disproves 🖖</p>
+            <p>🖖 vaporizes ✊</p>
+            <p>and as it always has</p>
+            <p>✊ crushes ✌️</p>
+        </div>
+    </div>
+
+    <!-- audio -->
+    <audio id="beep">
+        <source src="assets/audio/buttons/beep.wav" type="audio/wav">
+    </audio>
+    <audio id="iamrobot">
+        <source src="assets/audio/iamrobot.wav" type="audio/wav">
+    </audio>
+    <audio id="laugh">
+        <source src="assets/audio/laugh.wav" type="audio/wav">
+    </audio>
+    <audio id="robotMusic">
+        <source src="assets/audio/music/backbeat.mp3" type="audio/mp3">
+    </audio>
+    <audio id="racoonMusic">
+        <source src="assets/audio/music/mischief.mp3" type="audio/mp3">
+    </audio>
+    <!-- buttons -->
+    <div id="allButtonSounds">
+        <audio id="blip">
+            <source src="assets/audio/buttons/blip.wav" type="audio/wav">
+        </audio>
+        <audio id="buzz">
+            <source src="assets/audio/buttons/buzz.wav" type="audio/wav">
+        </audio>
+        <audio id="cloing">
+            <source src="assets/audio/buttons/cloing.wav" type="audio/wav">
+        </audio>
+        <audio id="flitch">
+            <source src="assets/audio/buttons/flitch.wav" type="audio/wav">
+        </audio>
+        <audio id="floink">
+            <source src="assets/audio/buttons/floink.wav" type="audio/wav">
+        </audio>
+        <audio id="floop">
+            <source src="assets/audio/buttons/floop.wav" type="audio/wav">
+        </audio>
+        <audio id="ploing">
+            <source src="assets/audio/buttons/ploing.wav" type="audio/wav">
+        </audio>
+        <audio id="sqweak">
+            <source src="assets/audio/buttons/sqweak.wav" type="audio/wav">
+        </audio>
+        <audio id="tock">
+            <source src="assets/audio/buttons/tock.wav" type="audio/wav">
+        </audio>
+        <audio id="whistle">
+            <source src="assets/audio/buttons/whistle.wav" type="audio/wav">
+        </audio>
+        <audio id="whoshk">
+            <source src="assets/audio/buttons/whoshk.wav" type="audio/wav">
+        </audio>
+    </div>
+    <!-- cheers -->
+    <div id="winCheers">
+        <audio id="whoo">
+            <source src="assets/audio/cheers/whoo.wav" type="audio/wav">
+        </audio>
+        <audio id="iyea">
+            <source src="assets/audio/cheers/iyea.wav" type="audio/wav">
+        </audio>
+        <audio id="yes">
+            <source src="assets/audio/cheers/yes.wav" type="audio/wav">
+        </audio>
+    </div>
+    <div id="loseCheers">
+        <audio id="whimper">
+            <source src="assets/audio/cheers/whimper.mp3" type="audio/mp3">
+        </audio>
+        <audio id="maleNO">
+            <source src="assets/audio/cheers/maleNO.mp3" type="audio/mp3">
+        </audio>
+        <audio id="wilScream">
+            <source src="assets/audio/cheers/wilhelmScream.mp3" type="audio/mp3">
+        </audio>
+    </div>
+    <div id="drawCheers">
+        <audio id="drumOne">
+            <source src="assets/audio/cheers/drumOne.wav" type="audio/wav">
+        </audio>
+        <audio id="drumTwo">
+            <source src="assets/audio/cheers/drumTwo.wav" type="audio/wav">
+        </audio>
+    </div>
+    <script src="assets/js/main.js" charset="UTF-8"></script>
+</body>
+
+</html>
